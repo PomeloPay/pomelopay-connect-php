@@ -86,9 +86,9 @@ use PomeloPayConnect\Client;
 $client = new Client('apikey', 'appid');
 
 $json = [
- "provider" => "alipay", // Payment method enabled for your merchant account such as bcmc, alipay, card
- "currency" => "MVR",
- "amount" => 1000, // 10.00 MVR
+ "provider" => "card", // Payment method enabled for your merchant account such as bcmc, card, card
+ "currency" => "GBP",
+ "amount" => 1000, // 10.00 GBP
  "redirectUrl" => "https://foo.bar/order/123" // Optional redirect after payment completion
 ];
 
@@ -104,8 +104,8 @@ use PomeloPayConnect\Client;
 $client = new Client('apikey', 'appid');
 
 $json = [
- "currency" => "MVR",
- "amount" => 1000, // 10.00 MVR
+ "currency" => "GBP",
+ "amount" => 1000, // 10.00 GBP
  "redirectUrl" => "https://foo.bar/order/987" // Optional redirect after payment completion
 ];
 
