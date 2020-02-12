@@ -1,15 +1,15 @@
-# BMLConnectPHP
+# PomeloPayConnectPHP
 
-> PHP API Client and bindings for the [Bank of Maldives Connect API](https://github.com/bankofmaldives/bml-connect)
+> PHP API Client and bindings for the [Pomelo Pay Connect API](https://github.com/pomelopay/pomelopay-connect)
 
-Using this PHP API Client you can interact with your Bank of Maldives Connect API:
+Using this PHP API Client you can interact with your Pomelo Pay Connect API:
 - 💳 __Transactions__
 
 ## Installation
 
 Requires PHP 7.0 or higher
 
-The recommended way to install bml-connect-php is through [Composer](https://getcomposer.org):
+The recommended way to install pomelopay-connect-php is through [Composer](https://getcomposer.org):
 
 First, install Composer:
 
@@ -17,10 +17,10 @@ First, install Composer:
 $ curl -sS https://getcomposer.org/installer | php
 ```
 
-Next, install the latest bml-connect-php:
+Next, install the latest pomelopay-connect-php:
 
 ```
-$ php composer.phar require bankofmaldives/bml-connect-php
+$ php composer.phar require pomelopay/pomelopay-connect-php
 ```
 
 Finally, you need to require the library in your PHP application:
@@ -32,18 +32,18 @@ require "vendor/autoload.php";
 ## Development
 
 - Run `composer test` and `composer phpcs` before creating a PR to detect any obvious issues.
-- Please create issues for this specific API Binding under the [issues](https://github.com/bankofmaldives/bml-connect-php/issues) section.
-- [Contact Bank of Maldives](https://dashboard.merchants.bankofmaldives.com.mv) directly for Bank of Maldives Connect API support.
+- Please create issues for this specific API Binding under the [issues](https://github.com/pomelopay/pomelopay-connect-php/issues) section.
+- [Contact Pomelo Pay](https://dashboard.pomelopay.com) directly for Pomelo Pay Connect API support.
 
 
 ## Quick Start
-### BMLConnect\Client
-First get your `production` or `sandbox` API key from [Merchant Portal](https://dashboard.merchants.bankofmaldives.com.mv).
+### PomeloPayConnect\Client
+First get your `production` or `sandbox` API key from [Merchant Portal](https://dashboard.pomelopay.com).
 
 If you want to get a `production` client:
 
 ```php
-use BMLConnect\Client;
+use PomeloPayConnect\Client;
 
 $client = new Client('apikey', 'appid');
 ```
@@ -51,7 +51,7 @@ $client = new Client('apikey', 'appid');
 If you want to get a `sandbox` client:
 
 ```php
-use BMLConnect\Client;
+use PomeloPayConnect\Client;
 
 $client = new Client('apikey', 'appid', 'sandbox');
 ```
@@ -59,7 +59,7 @@ $client = new Client('apikey', 'appid', 'sandbox');
 If you want to pass additional [GuzzleHTTP](https://github.com/guzzle/guzzle) options:
 
 ```php
-use BMLConnect\Client;
+use PomeloPayConnect\Client;
 
 $options = ['headers' => ['foo' => 'bar']];
 $client = new Client('apikey', 'appid', 'sandbox', $options);
@@ -67,7 +67,7 @@ $client = new Client('apikey', 'appid', 'sandbox', $options);
 
 ## Available API Operations
 
-The following exposed API operations from the Bank of Maldives Connect API are available using the API Client.
+The following exposed API operations from the Pomelo Pay Connect API are available using the API Client.
 
 See below for more details about each resource.
 
@@ -81,7 +81,7 @@ Create a new transaction with or without a specific payment method.
 #### Create transaction with a specific payment method
 
 ```php
-use BMLConnect\Client;
+use PomeloPayConnect\Client;
 
 $client = new Client('apikey', 'appid');
 
@@ -99,7 +99,7 @@ header('Location: '. $transaction["url"]); // Go to transaction payment page
 #### Create transaction without a payment method that will redirect to the payment method selection screen
 
 ```php
-use BMLConnect\Client;
+use PomeloPayConnect\Client;
 
 $client = new Client('apikey', 'appid');
 
@@ -116,4 +116,4 @@ header('Location: '. $transaction["url"]); // Go to payment method selection scr
 
 ## About
 
-⭐ Sign up as a merchant at https://dashboard.merchants.bankofmaldives.com.mv and start receiving payments in seconds.
+⭐ Sign up as a merchant at https://dashboard.pomelopay.com and start receiving payments in seconds.
