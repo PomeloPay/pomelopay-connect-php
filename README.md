@@ -38,7 +38,7 @@ require "vendor/autoload.php";
 
 ## Quick Start
 ### PomeloPayConnect\Client
-First get your `production` or `sandbox` API key from [Merchant Portal](https://dashboard.pomelopay.com).
+First get your `production` or `sandbox` API key from your [Dashboard](https://dashboard.pomelopay.com).
 
 If you want to get a `production` client:
 
