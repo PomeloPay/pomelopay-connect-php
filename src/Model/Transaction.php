@@ -19,19 +19,24 @@ class Transaction
     private $isPreAuthorization;
 
     /**
-     * @var
+     * @var string
      */
     private $provider;
 
     /**
-     * @var
+     * @var string
      */
     private $redirectUrl;
 
     /**
-     * @var
+     * @var string
      */
     private $localId;
+
+    /**
+     * @var string
+     */
+    private $webhook;
 
     /**
      * @return int
@@ -68,7 +73,7 @@ class Transaction
     /**
      * @return string
      */
-    public function getisPreAuthorization(): string
+    public function getisPreAuthorization()
     {
         return $this->isPreAuthorization;
     }
@@ -76,7 +81,7 @@ class Transaction
     /**
      * @param string $isPreAuthorization
      */
-    public function setIsPreAuthorization(string $isPreAuthorization)
+    public function setIsPreAuthorization($isPreAuthorization)
     {
         $this->isPreAuthorization = $isPreAuthorization;
     }
@@ -130,6 +135,22 @@ class Transaction
     }
 
     /**
+     * @return mixed
+     */
+    public function getWebhook()
+    {
+        return $this->webhook;
+    }
+
+    /**
+     * @param mixed $webhook
+     */
+    public function setWebhook($webhook)
+    {
+        $this->webhook = $webhook;
+    }
+
+    /**
      * @param array $json
      * @return $this
      */
@@ -151,14 +172,17 @@ class Transaction
         }
 
         if (array_key_exists('provider', $json)) {
-            $this->isPreAuthorization = $json['provider'];
+            $this->provider = $json['provider'];
         }
 
         if (array_key_exists('localId', $json)) {
-            $this->isPreAuthorization = $json['localId'];
+            $this->localId = $json['localId'];
+        }
+
+        if (array_key_exists('webhook', $json)) {
+            $this->webhook = $json['webhook'];
         }
 
         return $this;
-
     }
 }

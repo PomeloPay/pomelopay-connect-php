@@ -125,7 +125,7 @@ $client = new Client('apikey', 'appid');
 $json = [
  "currency" => "EUR",
  "amount" => 1234, // 12.34 EUR,
- "localId" => "INVOICE-2020-0001"
+ "localId" => "INVOICE-2020-0001",
  "redirectUrl" => "https://your.webshop.domain.url/my_order/2020_0001" // Optional redirect after payment completion, the payment portal will redirect to this URL and attach queryParameters to this URL, fully optional
 ];
 
@@ -133,6 +133,30 @@ $transaction = $client->transactions->create($json);
 header('Location: '. $transaction->url); // Go to payment screen on Pomelo Pay
 die();
 ```
+
+#### Create transaction without a payment method with your own localId that will redirect to the payment method selection screen and also sends a webhook for this specific transaction
+
+```php
+use PomeloPayConnect\Client;
+
+// Get your API Key and App ID from the "Connect" screen on your merchant dashboard
+$client = new Client('apikey', 'appid');
+
+// Currency should be your merchant account currency or the payment would be rejected
+$json = [
+ "currency" => "EUR",
+ "amount" => 1234, // 12.34 EUR,
+ "localId" => "INVOICE-2020-0001",
+ "webhook" => "https://foo.bar/incoming/1234",
+ "redirectUrl" => "https://your.webshop.domain.url/my_order/2020_0001" // Optional redirect after payment completion, the payment portal will redirect to this URL and attach queryParameters to this URL, fully optional
+];
+
+$transaction = $client->transactions->create($json);
+header('Location: '. $transaction->url); // Go to payment screen on Pomelo Pay
+die();
+```
+
+
 
 
 ## About
