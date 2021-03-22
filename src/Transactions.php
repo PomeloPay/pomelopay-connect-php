@@ -26,10 +26,15 @@ class Transactions
     /**
      * @param array $json
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function create(array $json)
     {
         $transaction = (new Transaction())->fromArray($json);
+        if(array_key_exists('validForHours', $json)) {
+            $json['expires'] = $transaction->getExpires();
+            unset($json['validForHours']);
+        }
         $json['signature'] = (new Signature($transaction, $this->client->getApiKey()))->sign();
         return $this->client->post(self::ENDPOINT, $json);
     }

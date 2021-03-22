@@ -1,6 +1,8 @@
 <?php
 namespace PomeloPayConnect\Model;
 
+use PomeloPayConnect\Options\Expires;
+
 class Transaction
 {
     /**
@@ -37,6 +39,11 @@ class Transaction
      * @var string
      */
     private $webhook;
+
+    /**
+     * @var string
+     */
+    private $expires;
 
     /**
      * @return int
@@ -151,8 +158,25 @@ class Transaction
     }
 
     /**
+     * @return string
+     */
+    public function getExpires()
+    {
+        return $this->expires;
+    }
+
+    /**
+     * @param string $expires
+     */
+    public function setExpires($expires)
+    {
+        $this->expires = $expires;
+    }
+
+    /**
      * @param array $json
      * @return $this
+     * @throws \Exception
      */
     public function fromArray(array $json)
     {
@@ -183,6 +207,16 @@ class Transaction
             $this->webhook = $json['webhook'];
         }
 
+        if (array_key_exists('validForHours', $json)) {
+            
+            if((int) $json['validForHours'] < 1 || (int) $json['validForHours'] > 2160) {
+                throw new \InvalidArgumentException('The minimum validity is 1 hour
+                 and the maximum validity is 90 days');
+            }
+
+            $this->expires = (new Expires(new \DateTime()))->getExpiryDateAsIsoString($json['validForHours']);
+        }
+        
         return $this;
     }
 }

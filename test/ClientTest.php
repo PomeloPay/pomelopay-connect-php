@@ -38,7 +38,13 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new PomeloPayConnect\Client('foo' , 'bar');
         $client->setClient($http_client);
 
-        $client->transactions->create(['foo' => 'bar', 'amount' => 123, 'currency' => 'EUR', 'webhook' => 'https://foo.bar']);
+        $client->transactions->create([
+            'foo' => 'bar',
+            'amount' => 123,
+            'currency' => 'EUR',
+            'webhook' => 'https://foo.bar',
+            'validForHours' => 3
+        ]);
 
         foreach ($container as $transaction) {
             $body = json_decode($transaction['request']->getBody()->getContents(), true);
@@ -50,6 +56,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($body['apiVersion'], '2.0');
             $this->assertEquals($body['appVersion'], 'pomelopay-connect-php');
             $this->assertEquals($body['signMethod'], 'sha1');
+            $this->assertNotEmpty($body['expires']);
             $this->assertEquals('POST', $transaction['request']->getMethod());
         }
     }
