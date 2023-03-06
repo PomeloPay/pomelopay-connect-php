@@ -8,6 +8,7 @@ use PomeloPayConnect\Model\Transaction;
 class Transactions
 {
     const ENDPOINT = 'transactions';
+    const ENDPOINT_V2 = 'v2/transactions';
 
     /**
      * @var Client
@@ -31,12 +32,11 @@ class Transactions
     public function create(array $json)
     {
         $transaction = (new Transaction())->fromArray($json);
-        if(array_key_exists('validForHours', $json)) {
+        if (array_key_exists('validForHours', $json)) {
             $json['expires'] = $transaction->getExpires();
             unset($json['validForHours']);
         }
-        $json['signature'] = (new Signature($transaction, $this->client->getApiKey()))->sign();
-        return $this->client->post(self::ENDPOINT, $json);
+        return $this->client->post(self::ENDPOINT_V2, $json);
     }
 
     /**

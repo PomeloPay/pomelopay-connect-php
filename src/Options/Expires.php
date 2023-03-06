@@ -2,7 +2,6 @@
 
 namespace PomeloPayConnect\Options;
 
-
 class Expires
 {
     private $now;
