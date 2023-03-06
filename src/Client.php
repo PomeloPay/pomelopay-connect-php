@@ -8,7 +8,7 @@ use GuzzleHttp\Psr7\Response;
 class Client
 {
     const API_VERSION = '2.0';
-    const APP_VERSION = 'pomelopay-connect-php';
+    const APP_VERSION = 'pomelo-php-v2.1.2';
     const SIGN_METHOD = 'sha1';
     const SANDBOX_ENDPOINT = 'https://api.dev.pomelopay.com/public/';
     const PRODUCTION_ENDPOINT = 'https://api.pomelopay.com/public/';

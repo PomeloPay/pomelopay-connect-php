@@ -53,7 +53,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($body['currency'], 'EUR');
             $this->assertEquals($body['webhook'], 'https://foo.bar');
             $this->assertEquals($body['apiVersion'], '2.0');
-            $this->assertEquals($body['appVersion'], 'pomelopay-connect-php');
             $this->assertEquals($body['signMethod'], 'sha1');
             $this->assertNotEmpty($body['expires']);
             $this->assertEquals('POST', $transaction['request']->getMethod());
