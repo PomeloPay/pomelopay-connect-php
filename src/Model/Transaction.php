@@ -55,6 +55,7 @@ class Transaction
 
     /**
      * @param int $amount
+     * @return void
      */
     public function setAmount(int $amount)
     {
@@ -71,6 +72,7 @@ class Transaction
 
     /**
      * @param string $currency
+     * @return void
      */
     public function setCurrency(string $currency)
     {
@@ -87,6 +89,7 @@ class Transaction
 
     /**
      * @param string $isPreAuthorization
+     * @return void
      */
     public function setIsPreAuthorization($isPreAuthorization)
     {
@@ -103,6 +106,7 @@ class Transaction
 
     /**
      * @param mixed $provider
+     * @return void
      */
     public function setProvider($provider)
     {
@@ -119,6 +123,7 @@ class Transaction
 
     /**
      * @param mixed $redirectUrl
+     * @return void
      */
     public function setRedirectUrl($redirectUrl)
     {
@@ -135,6 +140,7 @@ class Transaction
 
     /**
      * @param mixed $localId
+     * @return void
      */
     public function setLocalId($localId)
     {
@@ -151,6 +157,7 @@ class Transaction
 
     /**
      * @param mixed $webhook
+     * @return void
      */
     public function setWebhook($webhook)
     {
@@ -167,6 +174,7 @@ class Transaction
 
     /**
      * @param string $expires
+     * @return void
      */
     public function setExpires($expires)
     {
@@ -174,7 +182,7 @@ class Transaction
     }
 
     /**
-     * @param array $json
+     * @param array<mixed, mixed> $json
      * @return $this
      * @throws \Exception
      */
