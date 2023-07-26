@@ -4,6 +4,7 @@ namespace PomeloPayConnect;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 
 class Client
 {
@@ -109,7 +110,7 @@ class Client
      */
     private function handleResponse(Response $response)
     {
-        $stream = \GuzzleHttp\Psr7\stream_for($response->getBody());
+        $stream = Utils::streamFor($response->getBody());
         $data = json_decode($stream);
 
         return $data;
