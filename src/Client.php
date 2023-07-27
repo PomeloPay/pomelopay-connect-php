@@ -67,7 +67,7 @@ class Client
         $this->apiKey = $apiKey;
         $this->appId = $appId;
         $this->mode = $mode;
-        $this->baseUrl = ($mode === 'production' ? self::ENDPOINTS[$tenant][$mode] : self::SANDBOX_ENDPOINT[$tenant]['sandbox']);
+        $this->baseUrl = ($mode === 'production' ? self::ENDPOINTS[$tenant][$mode] : self::ENDPOINTS[$tenant]['sandbox']);
         $this->clientOptions = $clientOptions;
 
         $this->initiateHttpClient();
