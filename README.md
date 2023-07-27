@@ -65,6 +65,15 @@ $options = ['headers' => ['foo' => 'bar']];
 $client = new Client('apikey', 'appid', 'sandbox', $options);
 ```
 
+If you want to pass a custom base URL:
+
+```php
+use PomeloPayConnect\Client;
+
+$options = ['baseUrl' => 'my-custom-url'];
+$client = new Client('apikey', 'appid', 'sandbox', $options);
+```
+
 ## Available API Operations
 
 The following exposed API operations from the Pomelo Pay Connect API are available using the API Client.

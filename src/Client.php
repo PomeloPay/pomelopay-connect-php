@@ -56,14 +56,14 @@ class Client
      * @param string $appId
      * @param string $mode
      * @param array<mixed, mixed> $clientOptions
-     * @param string $endpoint
      */
-    public function __construct(string $apiKey, string $appId, $mode = 'production', array $clientOptions = [], $endpoint = '')
+    public function __construct(string $apiKey, string $appId, $mode = 'production', array $clientOptions = [])
     { 
         $this->apiKey = $apiKey;
         $this->appId = $appId;
         $this->mode = $mode;
-        $this->baseUrl = $endpoint === '' ? ($mode === 'production' ? self::PRODUCTION_ENDPOINT : self::SANDBOX_ENDPOINT) : $endpoint;
+        $this->baseUrl = isset($clientOptions['baseUrl']) ? $clientOptions['baseUrl'] : ($mode === 'production' ? self::PRODUCTION_ENDPOINT : self::SANDBOX_ENDPOINT);
+        if (isset($clientOptions['baseUrl'])) unset($clientOptions['baseUrl']);
         $this->clientOptions = $clientOptions;
 
         $this->initiateHttpClient();
