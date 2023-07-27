@@ -1,6 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
 
-class TransactionsTest extends PHPUnit_Framework_TestCase
+class TransactionsTest extends TestCase
 {
     public function testCreate()
     {

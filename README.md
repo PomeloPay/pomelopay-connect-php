@@ -7,7 +7,7 @@ Using this PHP API Client you can interact with your Pomelo Pay Connect API:
 
 ## Installation
 
-Requires PHP 7.0 or higher
+Requires PHP 7.2.5 or higher
 
 The recommended way to install pomelopay-connect-php is through [Composer](https://getcomposer.org):
 

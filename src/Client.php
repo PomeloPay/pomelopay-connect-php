@@ -4,6 +4,7 @@ namespace PomeloPayConnect;
 
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 
 class Client
 {
@@ -34,7 +35,7 @@ class Client
     private $mode;
 
     /**
-     * @var array
+     * @var array<mixed, mixed>|null
      */
     private $clientOptions;
 
@@ -54,7 +55,7 @@ class Client
      * @param string $apiKey
      * @param string $appId
      * @param string $mode
-     * @param array $clientOptions
+     * @param array<mixed, mixed> $clientOptions
      */
     public function __construct(string $apiKey, string $appId, $mode = 'production', array $clientOptions = [])
     {
@@ -71,6 +72,7 @@ class Client
 
     /**
      * @param GuzzleClient $client
+     * @return void
      */
     public function setClient(GuzzleClient $client)
     {
@@ -79,6 +81,7 @@ class Client
 
     /**
      * Initiates the HttpClient with required headers
+     * @return void
      */
     private function initiateHttpClient()
     {
@@ -93,6 +96,9 @@ class Client
         $this->httpClient = new GuzzleClient(array_replace_recursive($this->clientOptions, $options));
     }
 
+    /**
+     * @return string
+     */
     private function buildBaseUrl()
     {
         return $this->baseUrl;
@@ -104,7 +110,7 @@ class Client
      */
     private function handleResponse(Response $response)
     {
-        $stream = \GuzzleHttp\Psr7\stream_for($response->getBody());
+        $stream = Utils::streamFor($response->getBody());
         $data = json_decode($stream);
 
         return $data;
@@ -112,7 +118,7 @@ class Client
 
     /**
      * @param string $endpoint
-     * @param array $json
+     * @param array<mixed, mixed> $json
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -128,7 +134,7 @@ class Client
 
     /**
      * @param string $endpoint
-     * @param array $pagination
+     * @param array<mixed, mixed> $pagination
      * @return mixed
      */
     public function get(string $endpoint, array $pagination = [])
@@ -143,7 +149,7 @@ class Client
 
     /**
      * @param string $url
-     * @param array $pagination
+     * @param array<mixed, mixed> $pagination
      * @return string
      */
     private function applyPagination(string $url, array $pagination)
@@ -156,8 +162,8 @@ class Client
     }
 
     /**
-     * @param array $pagination
-     * @return array
+     * @param array<mixed, mixed> $pagination
+     * @return array<mixed, mixed>
      */
     private function cleanPagination(array $pagination)
     {
@@ -174,5 +180,21 @@ class Client
     public function getApiKey()
     {
         return $this->apiKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAppId()
+    {
+        return $this->appId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
     }
 }

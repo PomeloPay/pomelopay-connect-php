@@ -5,23 +5,26 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use PHPUnit\Framework\TestCase;
 
-class ClientTest extends PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     public function testClientEndpoint()
     {
         $client = new PomeloPayConnect\Client('foo', 'bar');
-
+        $reflection = new \ReflectionObject($client);
+        $property = $reflection->getProperty('baseUrl');
+        $property->setAccessible(true);
         $this->assertEquals(
             $client::PRODUCTION_ENDPOINT,
-            PHPUnit_Framework_Assert::readAttribute($client, "baseUrl")
+            $property->getValue($client)
         );
 
         $client = new PomeloPayConnect\Client('foo', 'bar', 'sandbox');
 
         $this->assertEquals(
             $client::SANDBOX_ENDPOINT,
-            PHPUnit_Framework_Assert::readAttribute($client, "baseUrl")
+            $property->getValue($client)
         );
 
     }

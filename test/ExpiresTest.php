@@ -5,8 +5,9 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use PHPUnit\Framework\TestCase;
 
-class ExpiresTest extends PHPUnit_Framework_TestCase
+class ExpiresTest extends TestCase
 {
     public function testExpires()
     {

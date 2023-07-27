@@ -25,7 +25,7 @@ class Transactions
     }
 
     /**
-     * @param array $json
+     * @param array<mixed, mixed> $json
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -49,7 +49,7 @@ class Transactions
     }
 
     /**
-     * @param array $params
+     * @param array<mixed, mixed> $params
      * @return mixed
      */
     public function list(array $params)
