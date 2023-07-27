@@ -11,12 +11,8 @@ class Client
     const API_VERSION = '2.0';
     const APP_VERSION = 'pomelo-php-v2.1.2';
     const SIGN_METHOD = 'sha1';
-    const ENDPOINTS = [
-        'pomelopay' => ['sandbox'=> 'https://api.dev.pomelopay.com/public/', 'production' => 'https://api.pomelopay.com/public/'],
-        'dialog' => ['sandbox'=> 'https://api.uat.geniebiz.lk/public/', 'production' => 'https://api.geniebiz.lk/public/'],
-        'rabbit' => ['sandbox'=> 'https://api.uat.pgw.rabbit.co.th/public/', 'production' => 'https://api.pgw.rabbit.co.th/public/'],
-        'bml' => ['sandbox'=> 'https://api.uat.merchants.bankofmaldives.com.mv/public/', 'production' => 'https://api.merchants.bankofmaldives.com.mv/public/']
-    ];
+    const SANDBOX_ENDPOINT = 'https://api.dev.pomelopay.com/public/';
+    const PRODUCTION_ENDPOINT = 'https://api.pomelopay.com/public/';
 
     /**
      * @var \GuzzleHttp\Client
@@ -59,15 +55,15 @@ class Client
      * @param string $apiKey
      * @param string $appId
      * @param string $mode
-     * @param string $tenant
      * @param array<mixed, mixed> $clientOptions
+     * @param string $endpoint
      */
-    public function __construct(string $apiKey, string $appId, $mode = 'production', $tenant = 'pomelopay', array $clientOptions = [])
-    {
+    public function __construct(string $apiKey, string $appId, $mode = 'production', array $clientOptions = [], $endpoint = '')
+    { 
         $this->apiKey = $apiKey;
         $this->appId = $appId;
         $this->mode = $mode;
-        $this->baseUrl = ($mode === 'production' ? self::ENDPOINTS[$tenant][$mode] : self::ENDPOINTS[$tenant]['sandbox']);
+        $this->baseUrl = $endpoint === '' ? ($mode === 'production' ? self::PRODUCTION_ENDPOINT : self::SANDBOX_ENDPOINT) : $endpoint;
         $this->clientOptions = $clientOptions;
 
         $this->initiateHttpClient();
