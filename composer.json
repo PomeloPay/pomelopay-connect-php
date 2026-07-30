@@ -1,15 +1,26 @@
 {
     "name": "pomelopay/pomelopay-connect-php",
     "description": "PHP Bindings for the Pomelo Pay Connect API",
-    "keywords": ["pomelopay", "pomelo", "pay", "alipay", "php", "api", "online payments", "card payments"],
+    "keywords": [
+        "pomelopay",
+        "pomelo",
+        "pay",
+        "alipay",
+        "php",
+        "api",
+        "online payments",
+        "card payments"
+    ],
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "7.15.2",
         "php": ">= 7.2.5"
     },
     "autoload": {
         "psr-4": {
-            "PomeloPayConnect\\": ["src"]
+            "PomeloPayConnect\\": [
+                "src"
+            ]
         }
     },
     "require-dev": {
